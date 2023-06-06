@@ -57,35 +57,15 @@ function playRound(playerSelection, computerSelection) {
         console.log("TIE");
         return "TIE";
     }
-    else if (playerSelection == "ROCK") {
-        if (computerSelection == "PAPER"){
-            console.log("computer wins, paper beats rock");
-            return "compWin";
-        }
-        if (computerSelection == "SCISSORS") {
-            console.log("you win, rock beats scissors");
-            return "userWin";
-        }
-    }
-    else if (playerSelection == "PAPER") {
-        if (computerSelection == "ROCK") {
-            console.log("you win, paper beats rock");
-            return "userWin";
-        }
-        else {
-            console.log("computer wins, scissors beats rock");
-            return "compWin";
-        }
-    }
+    else if (playerSelection == "ROCK" && computerSelection == "SCISSORS" ||
+            playerSelection == "PAPER" && computerSelection == "ROCK" ||
+            playerSelection == "SCISSORS" && computerSelection == "SCISSORS") {
+                console.log("you win! " + playerSelection + " beats " + computerSelection);
+                return "userWin";
+            }
     else {
-        if (computerSelection == "ROCK") {
-            console.log("computer wins, rock beats scissors");
-            return "compWin";
-        }
-        else {
-            console.log("you win, scissors beats paper");
-            return "userWin";
-        }
+        console.log("you lost! " + computerSelection + " beats " + playerSelection);
+        return "compWin";
     }
 }
 
