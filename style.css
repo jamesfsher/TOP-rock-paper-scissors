@@ -1,0 +1,36 @@
+body {
+    font-size: 15px;
+}
+
+.container-all {
+    padding: 10px;
+    width: 200px;
+    border: 2px;
+    background-color: lightgreen;
+    border-radius: 25px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.choice {
+    font-size: 25px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    flex: 0 0 1;
+    padding: 2px;
+}
+
+#choices {
+    gap: 5px;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,24 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>TOP Rock Paper Scissors</title>
-    <script type="text/javascript" src="rpsscript.js"></script>
 </head>
+
 <body>
-    <!-- start game() loop that loops 5 times -->
-        <!-- start tally of scores at 0 for user and computer -->
-        <!-- start with prompting the user for rock, paper or scissors and store as variable-->
-        <!-- call function that generates a computer answer randomonly between rock/paper/scissors -->
-        <!-- pass computer choice and prompted choice -->
-            <!-- compare and generate who won -->
-                <!-- use return -->
-            <!-- add to tally who is winning -->
-                <!-- use return -->
-            <!-- console.log(winner of that function) -->
-        <!-- after 5 rounds, declare winner -->
-    
+    <div class="container-all">
+        <div class="container" id="choices">
+            <button class="choice" id="ROCK">&#9994</button>
+            <button class="choice" id="PAPER">&#9995</button>
+            <button class="choice" id="SCISSORS">&#9996</button>
+        </div>
+
+        <div class="container">
+            <div id="playerChoice-title">Player Choice: </div>
+            <div id="playerChoice"></div>
+        </div>
+
+        <div class="container">
+            <div id="compChoice-title">Computer Choice: </div>
+            <div id="compChoice"></div>
+        </div>
+
+        <div class="container">
+            <div id="compt-title">Computer Score: </div>
+            <div id="compScore">0</div>
+        </div>
+
+        <div class="container">
+            <div id="user-title">User Score: </div>
+            <div id="userScore">0</div>
+        </div>
+
+        <div class="container">
+            <div id="gameOver-title" class="hidden">GAME OVER</div>
+        </div>
+
+        <div class="container">
+            <div id="gameOver-text" class="hidden"></div>
+        </div>
+
+        <div class="container">
+            <button id="reset" class="hidden" onclick="gameReset()">New Game</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="rpsscript.js"></script>
 </body>
+
 </html>

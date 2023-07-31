@@ -1,46 +1,45 @@
-function game() {
-    // Initialize scores
-    let compScore = 0;
-    let userScore = 0;
+// Directions
+// <!-- start game() loop that loops 5 times -->
+//     <!-- start tally of scores at 0 for user and computer -->
+//     <!-- start with prompting the user for rock, paper or scissors and store as variable-->
+//     <!-- call function that generates a computer answer randomonly between rock/paper/scissors -->
+//     <!-- pass computer choice and prompted choice -->
+//         <!-- compare and generate who won -->
+//             <!-- use return -->
+//         <!-- add to tally who is winning -->
+//             <!-- use return -->
+//         <!-- console.log(winner of that function) -->
+//     <!-- after 5 rounds, declare winner -->
 
-    for (let i = 0; i < 5; i++) {
-        console.log("Round " + (i + 1));
-        // Generate computer choice
-        let computerSelection = computerSelectionGenerator();
+let userScore = 0;
+let compScore = 0;
 
-        // Prompts user for their choice
-        let playerSelection = prompt("Enter rock, paper, or scissors");
-        // Capitalizes user's choice for comparison
-        playerSelection = playerSelection.toUpperCase();
+let rockSelect = document.querySelector("#ROCK").addEventListener("click", function () { playRound("ROCK") });
+let paperSelect = document.querySelector("#PAPER").addEventListener("click", function () { playRound("PAPER") });
+let scissorsSelect = document.querySelector("#SCISSORS").addEventListener("click", function () { playRound("SCISSORS") });
 
-        // Loop to make sure user has selected valid response, and conintues to prompt until valid response is entered
-        while (playerSelection != "ROCK" && playerSelection != "PAPER" && playerSelection != "SCISSORS") {
-            playerSelection = prompt("Enter valid response of rock, paper, or scissors");
-            playerSelection = playerSelection.toUpperCase();
-        }
-        console.log("user choice is " + playerSelection)
-        console.log("computer choice is " + computerSelection);
-
-        // Gets result of one round of RPS
-        let result = playRound(playerSelection, computerSelection);
-
-        // Uses result of playRound function to tally of scores
-        if (result == "compWin") {
-            compScore += 1;
-        }
-        else if (result == "userWin") {
-            userScore += 1;
-        }
-
-        console.log("Computer: " + compScore);
-        console.log("User: " + userScore);
-
-        console.log("");
-    }
-    console.log("GAME OVER");
-    console.log("Computer: " + compScore);
-    console.log("User: " + userScore);
+function gameReset() {
+    // reset scores
+    userScore = 0;
+    compScore = 0;
+    // resets player choice selection
+    document.querySelector("#playerChoice").innerHTML = "";
+    document.querySelector("#compChoice").innerHTML = "";
+    document.querySelector("#compScore").innerHTML = compScore;
+    document.querySelector("#userScore").innerHTML = userScore;
+    
+    document.querySelector("#gameOver-title").classList.toggle("hidden");
+    document.querySelector("#gameOver-text").classList.toggle("hidden");
+    document.querySelector("#playerChoice-title").classList.toggle("hidden");
+    document.querySelector("#playerChoice").classList.toggle("hidden");
+    document.querySelector("#compChoice-title").classList.toggle("hidden");
+    document.querySelector("#compChoice").classList.toggle("hidden");
+    document.querySelector("#reset").classList.toggle("hidden");
+    document.querySelector("#ROCK").classList.toggle("hidden");
+    document.querySelector("#PAPER").classList.toggle("hidden");
+    document.querySelector("#SCISSORS").classList.toggle("hidden");
 }
+
 
 // Function that generates randomly computer choice
 function computerSelectionGenerator() {
@@ -52,22 +51,44 @@ function computerSelectionGenerator() {
 }
 
 // Function to play a round of RPS, returns winner as either compWin or userWin as a string
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+    let computerSelection = computerSelectionGenerator();
+    document.querySelector("#playerChoice").innerHTML = playerSelection;
+    document.querySelector("#compChoice").innerHTML = computerSelection;
     if (playerSelection === computerSelection) {
         console.log("TIE");
-        return "TIE";
     }
     else if (playerSelection == "ROCK" && computerSelection == "SCISSORS" ||
             playerSelection == "PAPER" && computerSelection == "ROCK" ||
             playerSelection == "SCISSORS" && computerSelection == "SCISSORS") {
                 console.log("you win! " + playerSelection + " beats " + computerSelection);
-                return "userWin";
+                userScore += 1;
             }
+
     else {
         console.log("you lost! " + computerSelection + " beats " + playerSelection);
-        return "compWin";
+        compScore += 1;
     }
+
+    if (compScore >= 5 || userScore >= 5) {
+        document.querySelector("#gameOver-title").classList.toggle("hidden");
+        document.querySelector("#gameOver-text").classList.toggle("hidden");
+        document.querySelector("#playerChoice-title").classList.toggle("hidden");
+        document.querySelector("#playerChoice").classList.toggle("hidden");
+        document.querySelector("#compChoice-title").classList.toggle("hidden");
+        document.querySelector("#compChoice").classList.toggle("hidden");
+        document.querySelector("#reset").classList.toggle("hidden");
+        document.querySelector("#ROCK").classList.toggle("hidden"); 
+        document.querySelector("#PAPER").classList.toggle("hidden");
+        document.querySelector("#SCISSORS").classList.toggle("hidden");
+        if (compScore == 5) {
+            document.querySelector("#gameOver-text").innerHTML = "The computer won!"
+        }
+        else {
+            document.querySelector("#gameOver-text").innerHTML = "You won!"
+        }
+    }
+    document.querySelector("#compScore").innerHTML = compScore;
+    document.querySelector("#userScore").innerHTML = userScore;
 }
 
-
-game();
